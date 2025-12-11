@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veritas Motor Group - Premium Used Cars</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #f8f8f8;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: #ffffff;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        header h1 {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+            background-color: #000;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-text {
+            text-align: center;
+            color: white;
+            z-index: 10;
+        }
+
+        .hero-text h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #1a1a1a;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* Cars Grid */
+        .cars-container {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        .car-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .car-item:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .car-item:nth-child(even) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .car-item:nth-child(even) .car-image {
+            order: 2;
+        }
+
+        .car-item:nth-child(even) .car-details {
+            order: 1;
+        }
+
+        .car-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 6px;
+            height: 350px;
+        }
+
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            display: block;
+        }
+
+        .car-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .car-details {
+            padding: 1rem;
+        }
+
+        .car-details h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+            color: #1a1a1a;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .car-details p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spec-label {
+            font-size: 0.85rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        .spec-value {
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .cta-button {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            background-color: #333;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .car-item {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .car-item:nth-child(even) .car-image,
+            .car-item:nth-child(even) .car-details {
+                order: unset;
+            }
+
+            .hero-text h2 {
+                font-size: 2rem;
+            }
+
+            .hero-text p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .car-details h3 {
+                font-size: 1.4rem;
+            }
+
+            .specs {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <img src="https://res.cloudinary.com/dyg8btkjp/image/upload/v1765481885/Logo_1_zefi9t.png" alt="Veritas Motor Group Logo">
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="https://res.cloudinary.com/dyg8btkjp/image/upload/v1765482683/kace-rodriguez-HX9fOoD9xN4-unsplash_f0bea6.jpg" alt="Hero Car Image">
+        <div class="hero-overlay">
+            <div class="hero-text">
+                <h2>Premium Used Cars</h2>
+                <p>Carefully Curated Selection</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h2 class="section-title">Our Inventory</h2>
+
+        <div class="cars-container">
+            <!-- Car 1: Mitsubishi Lancer Evolution X -->
+            <div class="car-item">
+                <div class="car-image">
+                    <img src="https://res.cloudinary.com/dyg8btkjp/image/upload/v1763704651/PXL_20250927_201523836_2_qrvwkh.jpg" alt="2011 Mitsubishi Lancer Evolution X">
+                </div>
+                <div class="car-details">
+                    <h3>2011 Mitsubishi Lancer Evolution X</h3>
+                    <p>High-performance sports sedan with iconic design and thrilling driving dynamics. This well-maintained Evolution X is ready to deliver an exceptional driving experience.</p>
+                    <div class="specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Year</span>
+                            <span class="spec-value">2011</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Make</span>
+                            <span class="spec-value">Mitsubishi</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Model</span>
+                            <span class="spec-value">Lancer Evo X</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Transmission</span>
+                            <span class="spec-value">5-Speed Manual</span>
+                        </div>
+                    </div>
+                    <button class="cta-button">Inquire Now</button>
+                </div>
+            </div>
+
+            <!-- Car 2: Hyundai Veloster -->
+            <div class="car-item">
+                <div class="car-image">
+                    <img src="https://res.cloudinary.com/dyg8btkjp/image/upload/v1765482143/PXL_20251129_233513135_yl1gxw.jpg" alt="2014 Hyundai Veloster">
+                </div>
+                <div class="car-details">
+                    <h3>2014 Hyundai Veloster</h3>
+                    <p>Stylish hatchback with distinctive three-door design and fun driving characteristics. Perfect for those seeking a practical yet spirited vehicle with great value.</p>
+                    <div class="specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Year</span>
+                            <span class="spec-value">2014</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Make</span>
+                            <span class="spec-value">Hyundai</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Model</span>
+                            <span class="spec-value">Veloster</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Transmission</span>
+                            <span class="spec-value">6-Speed Manual</span>
+                        </div>
+                    </div>
+                    <button class="cta-button">Inquire Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Veritas Motor Group. All rights reserved. | Serving the community with integrity.</p>
+    </footer>
+
+    <script>
+        // Inquire Now button functionality
+        const buttons = document.querySelectorAll('.cta-button');
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                const carTitle = this.closest('.car-details').querySelector('h3').textContent;
+                alert(`Thank you for your interest in the ${carTitle}. Our team will contact you shortly!`);
+            });
+        });
+    </script>
+</body>
+</html>
